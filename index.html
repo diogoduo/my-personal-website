@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-js">
 
 <head>
     <meta charset="UTF-8">
@@ -7,30 +7,76 @@
 
     <title>Diogo Duo | Desenvolvedor de Software</title>
 
+    <meta name="description"
+          content="Diogo Duo — desenvolvedor formado em Análise e Desenvolvimento de Sistemas.
+                   Projetos web e mobile com React, Node.js, React Native, PostgreSQL e Supabase.">
+
+    <meta name="theme-color" content="#020817">
+
+    <!-- Compartilhamento em redes sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diogo Duo | Desenvolvedor de Software">
+    <meta property="og:description"
+          content="Portfólio de Diogo Duo: Reserva de Salas FMUSP (web) e FitVibe (app de treino e dieta).">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128187;</text></svg>">
+
+    <!-- Fonte Inter (o CSS já pedia Inter, mas ela nunca era carregada) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Marca que o JS está ativo, para o conteúdo nunca ficar invisível sem ele -->
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
 </head>
 
 <body>
 
+    <a href="#inicio" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- ÍCONE DO GITHUB (reaproveitado nos botões) -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <symbol id="icon-github" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </symbol>
+    </svg>
+
     <!-- FUNDO ANIMADO -->
-    <div id="particles"></div>
+    <div id="particles" aria-hidden="true"></div>
 
     <!-- NAVBAR -->
     <header class="header">
 
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navegação principal">
 
             <a href="#inicio" class="logo">
-                Diogo Duo
+                Diogo <span>Duo</span>
             </a>
 
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
                 <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
                 <li><a href="#experiencia">Experiência</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
+
+            <button class="nav-toggle"
+                    id="nav-toggle"
+                    type="button"
+                    aria-label="Abrir menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
         </nav>
 
@@ -60,21 +106,22 @@
                 </h1>
 
                 <h2>
-                    <span id="typing"></span>
-                    <span class="cursor">|</span>
+                    <span id="typing">Desenvolvedor de Software</span>
+                    <span class="cursor" aria-hidden="true">|</span>
                 </h2>
 
                 <p class="hero-description">
-                    Profissional de Tecnologia da Informação, formado em
-                    Análise e Desenvolvimento de Sistemas, com experiência
-                    em Help Desk e suporte técnico.
+                    Formado em Análise e Desenvolvimento de Sistemas, crio
+                    aplicações <strong>web e mobile</strong> de ponta a ponta,
+                    do banco de dados à interface. Hoje atuo em Help Desk
+                    na FMUSP.
                 </p>
 
                 <div class="hero-buttons">
 
                     <a href="#projetos" class="button primary">
                         Ver meus projetos
-                        <span>→</span>
+                        <span aria-hidden="true">→</span>
                     </a>
 
                     <a href="#contato" class="button secondary">
@@ -83,14 +130,24 @@
 
                 </div>
 
+                <div class="hero-featured">
+
+                    <span>Em destaque:</span>
+
+                    <a href="#reservas">Reserva de Salas FMUSP</a>
+
+                    <a href="#fitvibe">FitVibe</a>
+
+                </div>
+
                 <div class="socials">
 
-                    <a href="https://github.com/diogoduo" target="_blank">
+                    <a href="https://github.com/diogoduo" target="_blank" rel="noopener">
                         GitHub
                     </a>
 
                     <a href="https://www.linkedin.com/in/duodiogo"
-                       target="_blank">
+                       target="_blank" rel="noopener">
                         LinkedIn
                     </a>
 
@@ -139,9 +196,12 @@
                     </p>
 
                     <p>
-                        Meu objetivo é atuar no desenvolvimento de
-                        software, aplicando meus conhecimentos e
-                        evoluindo constantemente na área de tecnologia.
+                        Fora do suporte, desenvolvo projetos completos:
+                        um <strong>sistema de reserva de salas</strong>
+                        pensado para a rotina da FMUSP e o
+                        <strong>FitVibe</strong>, um app de treino e dieta
+                        para iOS e Android. Meu objetivo é atuar como
+                        desenvolvedor de software.
                     </p>
 
                 </div>
@@ -164,24 +224,22 @@
                             </p>
 
                             <p class="indent">
-                                nome:
-                                <span class="green">
-                                    "Diogo Duo"
-                                </span>,
+                                nome: <span class="green">"Diogo Duo"</span>,
                             </p>
 
                             <p class="indent">
-                                formação:
-                                <span class="green">
-                                    "ADS"
-                                </span>,
+                                formação: <span class="green">"ADS"</span>,
                             </p>
 
                             <p class="indent">
-                                foco:
-                                <span class="green">
-                                    "Software"
-                                </span>,
+                                stack: [<span class="green">"React"</span>,
+                                <span class="green">"Node.js"</span>,
+                                <span class="green">"React Native"</span>],
+                            </p>
+
+                            <p class="indent">
+                                projetos: [<span class="green">"FitVibe"</span>,
+                                <span class="green">"Reservas FMUSP"</span>],
                             </p>
 
                             <p class="indent">
@@ -204,15 +262,217 @@
         </section>
 
 
-        <!-- HABILIDADES -->
-        <section id="habilidades" class="section">
+        <!-- PROJETOS -->
+        <section id="projetos" class="section">
 
             <div class="section-title reveal">
 
                 <span>02</span>
 
                 <div>
-                    <p>O que eu conheço</p>
+                    <p>O que estou construindo</p>
+                    <h2>Projetos</h2>
+                </div>
+
+            </div>
+
+
+            <div class="featured-list">
+
+                <!-- DESTAQUE 1: RESERVA DE SALAS -->
+
+                <article class="featured reveal" id="reservas">
+
+                    <div class="featured-info">
+
+                        <p class="featured-kicker">
+                            Web · Full stack
+                        </p>
+
+                        <h3>Reserva de Salas FMUSP</h3>
+
+                        <p class="featured-description">
+                            Sistema para alunos, docentes e funcionários da
+                            Faculdade de Medicina da USP solicitarem salas, e
+                            para o Serviço de Apoio Didático analisar cada
+                            pedido, alocar a sala mais adequada e aprovar ou
+                            rejeitar, com aviso por e-mail em cada etapa.
+                        </p>
+
+                        <ul class="featured-highlights">
+                            <li>
+                                Reservas recorrentes com prévia das datas da
+                                série e checagem de conflito em cada uma
+                            </li>
+                            <li>
+                                Salas ordenadas da mais para a menos adequada,
+                                pela capacidade e pela agenda
+                            </li>
+                            <li>
+                                Reserva duplicada barrada também no banco, com
+                                uma restrição de exclusão no PostgreSQL
+                            </li>
+                            <li>
+                                Responsivo, com tema claro e escuro
+                            </li>
+                        </ul>
+
+                        <div class="tags">
+                            <span>React</span>
+                            <span>TypeScript</span>
+                            <span>Tailwind CSS</span>
+                            <span>Node.js</span>
+                            <span>Express</span>
+                            <span>Prisma</span>
+                            <span>PostgreSQL</span>
+                        </div>
+
+                        <a href="https://github.com/diogoduo/sala-reservas-fmusp"
+                           class="button primary featured-link"
+                           target="_blank" rel="noopener">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                            Ver repositório no GitHub
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                    </div>
+
+                    <div class="featured-media media-web">
+
+                        <div class="browser">
+
+                            <div class="window-bar" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <img src="assets/projetos/reservas-desktop.png"
+                                 width="1920" height="1200"
+                                 loading="lazy" decoding="async"
+                                 alt="Painel do SAD analisando uma solicitação: as salas aparecem da mais para a menos adequada, com a recomendada em destaque e o botão de aprovar as 8 datas da série">
+
+                        </div>
+
+                        <div class="phone">
+                            <img src="assets/projetos/reservas-celular.png"
+                                 width="780" height="1688"
+                                 loading="lazy" decoding="async"
+                                 alt="A mesma análise de solicitação no celular, no tema escuro">
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DESTAQUE 2: FITVIBE -->
+
+                <article class="featured featured-reverse reveal" id="fitvibe">
+
+                    <div class="featured-info">
+
+                        <p class="featured-kicker">
+                            Mobile · iOS e Android
+                        </p>
+
+                        <h3>FitVibe</h3>
+
+                        <p class="featured-description">
+                            App de treino e dieta offline-first, com
+                            sincronização e rede social. Tudo é gravado
+                            primeiro no celular, então funciona sem sinal na
+                            academia e sincroniza quando a conexão volta.
+                        </p>
+
+                        <ul class="featured-highlights">
+                            <li>
+                                Treino com progressão de carga série por série,
+                                recordes e timer de descanso
+                            </li>
+                            <li>
+                                Dieta com a tabela TACO, leitor de código de
+                                barras e meta de calorias que se ajusta
+                            </li>
+                            <li>
+                                Assistente por voz com IA: "almocei 200 g de
+                                arroz" vira um registro para conferir
+                            </li>
+                            <li>
+                                Feed social com regras de privacidade no
+                                próprio banco (RLS) e mais de 230 testes
+                            </li>
+                        </ul>
+
+                        <div class="tags">
+                            <span>React Native</span>
+                            <span>Expo</span>
+                            <span>TypeScript</span>
+                            <span>SQLite</span>
+                            <span>Supabase</span>
+                            <span>Jest</span>
+                        </div>
+
+                        <a href="https://github.com/diogoduo/FitVibe"
+                           class="button primary featured-link"
+                           target="_blank" rel="noopener">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                            Ver repositório no GitHub
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                    </div>
+
+                    <div class="featured-media media-mobile">
+
+                        <div class="phone phone-side">
+                            <img src="assets/projetos/fitvibe-treino.jpg"
+                                 width="739" height="1600"
+                                 loading="lazy" decoding="async"
+                                 alt="Treino em andamento: séries de aquecimento e de trabalho com a carga sugerida e o RIR">
+                        </div>
+
+                        <div class="phone phone-center">
+                            <img src="assets/projetos/fitvibe-hoje.jpg"
+                                 width="591" height="1280"
+                                 loading="lazy" decoding="async"
+                                 alt="Tela Hoje: anéis de calorias, proteína e água, e o gasto × consumo do dia">
+                        </div>
+
+                        <div class="phone phone-side">
+                            <img src="assets/projetos/fitvibe-dieta.jpg"
+                                 width="739" height="1600"
+                                 loading="lazy" decoding="async"
+                                 alt="Dieta: almoço com os alimentos da tabela TACO e as calorias de cada um">
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <a href="https://github.com/diogoduo"
+               class="all-repos reveal"
+               target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                Ver todos os repositórios
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </section>
+
+
+        <!-- HABILIDADES -->
+        <section id="habilidades" class="section">
+
+            <div class="section-title reveal">
+
+                <span>03</span>
+
+                <div>
+                    <p>O que eu uso</p>
                     <h2>Habilidades</h2>
                 </div>
 
@@ -223,13 +483,13 @@
                 <div class="skill-card">
 
                     <div class="skill-icon">
-                        C#
+                        TS
                     </div>
 
-                    <h3>C#</h3>
+                    <h3>TypeScript</h3>
 
                     <p>
-                        Desenvolvimento de aplicações
+                        Front-end e back-end tipados
                     </p>
 
                 </div>
@@ -238,13 +498,13 @@
                 <div class="skill-card">
 
                     <div class="skill-icon">
-                        &lt;/&gt;
+                        JSX
                     </div>
 
-                    <h3>HTML5</h3>
+                    <h3>React</h3>
 
                     <p>
-                        Desenvolvimento Web
+                        Interfaces web com Tailwind CSS
                     </p>
 
                 </div>
@@ -253,13 +513,28 @@
                 <div class="skill-card">
 
                     <div class="skill-icon">
-                        #
+                        RN
                     </div>
 
-                    <h3>CSS3</h3>
+                    <h3>React Native</h3>
 
                     <p>
-                        Interfaces e responsividade
+                        Apps iOS e Android com Expo
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        API
+                    </div>
+
+                    <h3>Node.js</h3>
+
+                    <p>
+                        APIs com Express e Prisma
                     </p>
 
                 </div>
@@ -271,10 +546,10 @@
                         DB
                     </div>
 
-                    <h3>SQL Server</h3>
+                    <h3>Bancos de dados</h3>
 
                     <p>
-                        Banco de dados e SQL
+                        PostgreSQL, Supabase, SQLite e SQL Server
                     </p>
 
                 </div>
@@ -283,13 +558,28 @@
                 <div class="skill-card">
 
                     <div class="skill-icon">
-                        C++
+                        C#
                     </div>
 
-                    <h3>C++</h3>
+                    <h3>C# e C++</h3>
 
                     <p>
-                        Programação
+                        Base da graduação em ADS
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        &lt;/&gt;
+                    </div>
+
+                    <h3>HTML5 e CSS3</h3>
+
+                    <p>
+                        Web e responsividade
                     </p>
 
                 </div>
@@ -308,183 +598,6 @@
                     </p>
 
                 </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PROJETOS -->
-        <section id="projetos" class="section">
-
-            <div class="section-title reveal">
-
-                <span>03</span>
-
-                <div>
-                    <p>O que estou construindo</p>
-                    <h2>Projetos</h2>
-                </div>
-
-            </div>
-
-
-            <div class="projects reveal">
-
-                <!-- PROJETO 1 -->
-
-                <article class="project-card">
-
-                    <div class="project-number">
-                        01
-                    </div>
-
-                    <div class="project-top">
-
-                        <div class="folder">
-                            📁
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#" target="_blank">↗</a>
-                            <a href="#" target="_blank">Git</a>
-                        </div>
-
-                    </div>
-
-                    <h3>Sistema de Chamados</h3>
-
-                    <p>
-                        Sistema web para gerenciamento de chamados
-                        técnicos, usuários, prioridades e status.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>C#</span>
-                        <span>ASP.NET Core</span>
-                        <span>SQL Server</span>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PROJETO 2 -->
-
-                <article class="project-card">
-
-                    <div class="project-number">
-                        02
-                    </div>
-
-                    <div class="project-top">
-
-                        <div class="folder">
-                            📁
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#" target="_blank">↗</a>
-                            <a href="#" target="_blank">Git</a>
-                        </div>
-
-                    </div>
-
-                    <h3>Sistema de Reservas</h3>
-
-                    <p>
-                        Sistema para gerenciamento de salas,
-                        horários, reservas e recursos.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>C#</span>
-                        <span>ASP.NET Core</span>
-                        <span>SQL Server</span>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PROJETO 3 -->
-
-                <article class="project-card">
-
-                    <div class="project-number">
-                        03
-                    </div>
-
-                    <div class="project-top">
-
-                        <div class="folder">
-                            📁
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#" target="_blank">↗</a>
-                            <a href="#" target="_blank">Git</a>
-                        </div>
-
-                    </div>
-
-                    <h3>Duo Store</h3>
-
-                    <p>
-                        E-commerce responsivo desenvolvido para
-                        praticar desenvolvimento web.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PROJETO 4 -->
-
-                <article class="project-card">
-
-                    <div class="project-number">
-                        04
-                    </div>
-
-                    <div class="project-top">
-
-                        <div class="folder">
-                            📁
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#" target="_blank">↗</a>
-                            <a href="#" target="_blank">Git</a>
-                        </div>
-
-                    </div>
-
-                    <h3>Dashboard Help Desk</h3>
-
-                    <p>
-                        Dashboard para análise de chamados e
-                        indicadores de suporte técnico.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>SQL Server</span>
-                        <span>C#</span>
-                        <span>Power BI</span>
-
-                    </div>
-
-                </article>
 
             </div>
 
@@ -541,7 +654,7 @@
 
 
         <!-- FORMAÇÃO -->
-        <section class="section">
+        <section id="educacao" class="section">
 
             <div class="section-title reveal">
 
@@ -619,21 +732,21 @@
                     href="mailto:duodiogo.business@gmail.com"
                     class="button primary"
                 >
-                    Entrar em contato →
+                    Entrar em contato <span aria-hidden="true">→</span>
                 </a>
 
                 <div class="contact-socials">
 
                     <a
                         href="https://www.linkedin.com/in/duodiogo"
-                        target="_blank"
+                        target="_blank" rel="noopener"
                     >
                         LinkedIn
                     </a>
 
                     <a
                         href="https://github.com/diogoduo"
-                        target="_blank"
+                        target="_blank" rel="noopener"
                     >
                         GitHub
                     </a>
@@ -662,7 +775,7 @@
         </p>
 
         <p>
-            © 2026
+            © <span id="year">2026</span>
         </p>
 
     </footer>

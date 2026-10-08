@@ -1,296 +1,284 @@
 /* =========================
+   PREFERÊNCIA DE MOVIMENTO
+   Se a pessoa pediu menos animação no sistema,
+   nada de partículas, digitação ou tilt 3D.
+========================= */
+
+const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
+const isTouch = window.matchMedia("(hover: none)").matches;
+
+
+/* =========================
    EFEITO DE DIGITAÇÃO
 ========================= */
 
-const typingElement =
-    document.getElementById("typing");
+const typingElement = document.getElementById("typing");
 
 const phrases = [
     "Desenvolvedor de Software",
-    "Profissional de TI",
-    "Entusiasta de Tecnologia"
+    "Apps web e mobile",
+    "React · Node.js · React Native",
+    "Profissional de TI"
 ];
 
-let phraseIndex = 0;
-let characterIndex = 0;
-let deleting = false;
+if (typingElement) {
 
+    if (reduceMotion) {
 
-function typeEffect() {
-
-    const currentPhrase =
-        phrases[phraseIndex];
-
-    if (!deleting) {
-
-        typingElement.textContent =
-            currentPhrase.substring(
-                0,
-                characterIndex + 1
-            );
-
-        characterIndex++;
-
-        if (
-            characterIndex ===
-            currentPhrase.length
-        ) {
-
-            deleting = true;
-
-            setTimeout(
-                typeEffect,
-                1800
-            );
-
-            return;
-
-        }
+        // Mostra a primeira frase inteira, sem animar
+        typingElement.textContent = phrases[0];
 
     } else {
 
-        typingElement.textContent =
-            currentPhrase.substring(
-                0,
-                characterIndex - 1
-            );
+        let phraseIndex = 0;
+        let characterIndex = 0;
+        let deleting = false;
 
-        characterIndex--;
+        const typeEffect = () => {
 
-        if (characterIndex === 0) {
+            // Aba em segundo plano: espera, não gasta CPU à toa
+            if (document.hidden) {
+                setTimeout(typeEffect, 500);
+                return;
+            }
 
-            deleting = false;
+            const currentPhrase = phrases[phraseIndex];
 
-            phraseIndex =
-                (phraseIndex + 1)
-                % phrases.length;
+            if (!deleting) {
 
-        }
+                typingElement.textContent =
+                    currentPhrase.substring(0, characterIndex + 1);
+
+                characterIndex++;
+
+                if (characterIndex === currentPhrase.length) {
+                    deleting = true;
+                    setTimeout(typeEffect, 1800);
+                    return;
+                }
+
+            } else {
+
+                typingElement.textContent =
+                    currentPhrase.substring(0, characterIndex - 1);
+
+                characterIndex--;
+
+                if (characterIndex === 0) {
+                    deleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                }
+
+            }
+
+            setTimeout(typeEffect, deleting ? 45 : 80);
+
+        };
+
+        typeEffect();
 
     }
 
-    const speed =
-        deleting ? 45 : 80;
-
-    setTimeout(
-        typeEffect,
-        speed
-    );
-
 }
-
-
-typeEffect();
-
 
 
 /* =========================
    PARTÍCULAS
 ========================= */
 
-const particleContainer =
-    document.getElementById(
-        "particles"
-    );
+const particleContainer = document.getElementById("particles");
 
+if (particleContainer && !reduceMotion) {
 
-for (let i = 0; i < 45; i++) {
+    // Menos partículas em telas pequenas (economia de bateria)
+    const total = window.innerWidth < 800 ? 18 : 45;
 
-    const particle =
-        document.createElement("div");
+    // Um fragmento só = um reflow, em vez de 45
+    const fragment = document.createDocumentFragment();
 
-    particle.classList.add(
-        "particle"
-    );
+    for (let i = 0; i < total; i++) {
 
-    particle.style.left =
-        Math.random() * 100 + "%";
+        const particle = document.createElement("div");
 
-    particle.style.top =
-        Math.random() * 100 + "%";
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.top = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 8 + "s";
+        particle.style.animationDuration = 5 + Math.random() * 8 + "s";
 
-    particle.style.animationDelay =
-        Math.random() * 8 + "s";
+        fragment.appendChild(particle);
 
-    particle.style.animationDuration =
-        5 + Math.random() * 8 + "s";
+    }
 
-    particleContainer.appendChild(
-        particle
-    );
+    particleContainer.appendChild(fragment);
 
 }
-
 
 
 /* =========================
    SCROLL REVEAL
 ========================= */
 
-const revealElements =
-    document.querySelectorAll(
-        ".reveal"
-    );
+const revealObserver = new IntersectionObserver(
 
+    (entries) => {
 
-const revealObserver =
-    new IntersectionObserver(
-        (entries) => {
+        entries.forEach((entry) => {
 
-            entries.forEach(
-                (entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                // Já apareceu: para de observar
+                revealObserver.unobserve(entry.target);
+            }
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+        });
 
-                        entry.target.classList.add(
-                            "active"
-                        );
+    },
+    { threshold: 0.15 }
 
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold: 0.15
-        }
-    );
-
-
-revealElements.forEach(
-    (element) => {
-
-        revealObserver.observe(
-            element
-        );
-
-    }
 );
 
+document.querySelectorAll(".reveal").forEach((element) => {
+    revealObserver.observe(element);
+});
 
 
 /* =========================
-   EFEITO 3D NO CARD
+   MENU MOBILE
 ========================= */
 
-const codeWindow =
-    document.querySelector(
-        ".code-window"
-    );
+const navToggle = document.getElementById("nav-toggle");
+const navLinks = document.getElementById("nav-links");
 
+if (navToggle && navLinks) {
 
-if (codeWindow) {
+    const setMenu = (open) => {
+        navLinks.classList.toggle("open", open);
+        navToggle.setAttribute("aria-expanded", String(open));
+        navToggle.setAttribute(
+            "aria-label",
+            open ? "Fechar menu" : "Abrir menu"
+        );
+    };
 
-    codeWindow.addEventListener(
-        "mousemove",
-        (event) => {
+    navToggle.addEventListener("click", () => {
+        setMenu(!navLinks.classList.contains("open"));
+    });
 
-            const rect =
-                codeWindow.getBoundingClientRect();
+    // Fecha ao escolher uma seção ou ao apertar Esc
+    navLinks.addEventListener("click", (event) => {
+        if (event.target.closest("a")) setMenu(false);
+    });
 
-            const x =
-                event.clientX -
-                rect.left;
-
-            const y =
-                event.clientY -
-                rect.top;
-
-            const centerX =
-                rect.width / 2;
-
-            const centerY =
-                rect.height / 2;
-
-            const rotateX =
-                (y - centerY) / 20;
-
-            const rotateY =
-                (centerX - x) / 20;
-
-            codeWindow.style.transform =
-                `rotateX(${rotateX}deg)
-                 rotateY(${rotateY}deg)`;
-
-        }
-    );
-
-
-    codeWindow.addEventListener(
-        "mouseleave",
-        () => {
-
-            codeWindow.style.transform =
-                "rotateX(0) rotateY(0)";
-
-        }
-    );
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setMenu(false);
+    });
 
 }
 
 
-
 /* =========================
-   EFEITO NOS CARDS
+   SEÇÃO ATIVA NO MENU
 ========================= */
 
-const cards =
-    document.querySelectorAll(
-        ".skill-card, .project-card"
+const sections = document.querySelectorAll("main section[id]");
+
+const menuLinks = new Map(
+    [...document.querySelectorAll('.nav-links a[href^="#"]')].map(
+        (link) => [link.getAttribute("href").slice(1), link]
+    )
+);
+
+if (sections.length && menuLinks.size) {
+
+    const spy = new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                const link = menuLinks.get(entry.target.id);
+                if (!link || !entry.isIntersecting) return;
+
+                menuLinks.forEach((other) =>
+                    other.classList.remove("current")
+                );
+
+                link.classList.add("current");
+
+            });
+
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+
     );
 
+    sections.forEach((section) => spy.observe(section));
 
-cards.forEach(
-    (card) => {
-
-        card.addEventListener(
-            "mousemove",
-            (event) => {
-
-                const rect =
-                    card.getBoundingClientRect();
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-                const percentX =
-                    x / rect.width;
-
-                const percentY =
-                    y / rect.height;
-
-                const moveX =
-                    (percentX - 0.5) * 5;
-
-                const moveY =
-                    (percentY - 0.5) * 5;
-
-                card.style.transform =
-                    `translateY(-8px)
-                     rotateX(${-moveY}deg)
-                     rotateY(${moveX}deg)`;
-
-            }
-        );
+}
 
 
-        card.addEventListener(
-            "mouseleave",
-            () => {
+/* =========================
+   EFEITO 3D (CARD DE CÓDIGO E DEMAIS CARDS)
+   Só em telas com mouse — no toque o transform
+   inline travava o estado de hover.
+========================= */
 
-                card.style.transform =
-                    "translateY(0) rotateX(0) rotateY(0)";
+function applyTilt(element, intensity, lift) {
 
-            }
-        );
+    let frame = null;
 
+    element.addEventListener("mousemove", (event) => {
+
+        if (frame) return;
+
+        frame = requestAnimationFrame(() => {
+
+            frame = null;
+
+            const rect = element.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+            element.style.transform =
+                `translateY(${lift}px) ` +
+                `rotateX(${-y * intensity}deg) ` +
+                `rotateY(${x * intensity}deg)`;
+
+        });
+
+    });
+
+    element.addEventListener("mouseleave", () => {
+        element.style.transform = "";
+    });
+
+}
+
+if (!isTouch && !reduceMotion) {
+
+    const codeWindow = document.querySelector(".code-window");
+
+    if (codeWindow) {
+        applyTilt(codeWindow, 8, 0);
     }
-);
+
+    document
+        .querySelectorAll(".skill-card")
+        .forEach((card) => applyTilt(card, 5, -8));
+
+}
+
+
+/* =========================
+   ANO DO RODAPÉ
+========================= */
+
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}

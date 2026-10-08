@@ -35,6 +35,50 @@
 
 html {
     scroll-behavior: smooth;
+
+    /* O header fixo tem 75px: sem isso o título da seção
+       fica escondido atrás dele ao clicar no menu */
+    scroll-padding-top: 95px;
+}
+
+
+/* Sem isso os links herdam o azul/roxo padrão do navegador
+   e aparecem sublinhados (inclusive dentro dos botões) */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+img,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* Foco visível para quem navega pelo teclado */
+:focus-visible {
+    outline: 2px solid var(--blue-light);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2000;
+    padding: 12px 18px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 0 0 8px 0;
+}
+
+
+.skip-link:focus {
+    left: 0;
 }
 
 body {
@@ -276,6 +320,67 @@ body::before {
 }
 
 
+.nav-toggle {
+
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+.nav-toggle span {
+
+    width: 18px;
+    height: 2px;
+
+    background: var(--text);
+
+    transition: 0.25s;
+
+}
+
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* Item da seção que está na tela */
+.nav-links a.current {
+
+    color: #fff;
+
+}
+
+
+.nav-links a.current::after {
+
+    width: 100%;
+
+}
+
+
 /* =========================
    HERO
 ========================= */
@@ -304,6 +409,12 @@ body::before {
 .hero-glow {
 
     position: absolute;
+
+    /* Sem top/left o brilho caía num ponto arbitrário do layout */
+    top: 10%;
+    left: -120px;
+
+    pointer-events: none;
 
     width: 500px;
     height: 500px;
@@ -507,6 +618,13 @@ body::before {
 }
 
 
+.hero-description strong {
+
+    color: #dbe7f5;
+
+}
+
+
 .hero-buttons {
 
     display: flex;
@@ -590,13 +708,63 @@ body::before {
 }
 
 
+/* Atalhos para os dois projetos principais */
+.hero-featured {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 28px;
+
+    color: #7b93b0;
+
+    font-size: 14px;
+
+}
+
+
+.hero-featured a {
+
+    padding: 6px 13px;
+
+    border:
+        1px solid
+        rgba(22, 131, 255, 0.3);
+
+    border-radius: 50px;
+
+    background:
+        rgba(22, 131, 255, 0.06);
+
+    color: #a9c8eb;
+
+    transition: 0.3s;
+
+}
+
+
+.hero-featured a:hover {
+
+    border-color:
+        rgba(56, 167, 255, 0.6);
+
+    color: #fff;
+
+}
+
+
 .socials {
 
     display: flex;
 
     gap: 25px;
 
-    margin-top: 30px;
+    margin-top: 25px;
 
 }
 
@@ -630,7 +798,7 @@ body::before {
 
     left: 25px;
 
-    color: #526983;
+    color: #7b93b0;
 
     font-size: 12px;
 
@@ -690,7 +858,7 @@ body::before {
         var(--blue-light);
 
     font-family:
-        monospace;
+        "JetBrains Mono", ui-monospace, monospace;
 
     padding-top: 7px;
 
@@ -714,7 +882,7 @@ body::before {
 
 .section-title h2 {
 
-    font-size: 45px;
+    font-size: clamp(30px, 5vw, 45px);
 
     letter-spacing: -2px;
 
@@ -725,7 +893,7 @@ body::before {
    REVEAL
 ========================= */
 
-.reveal {
+.js .reveal {
 
     opacity: 0;
 
@@ -738,7 +906,7 @@ body::before {
 }
 
 
-.reveal.active {
+.js .reveal.active {
 
     opacity: 1;
 
@@ -856,6 +1024,8 @@ body::before {
         30px;
 
     font-family:
+        "JetBrains Mono",
+        ui-monospace,
         "Courier New",
         monospace;
 
@@ -898,10 +1068,14 @@ body::before {
 
     display: grid;
 
+    /* auto-fit evita cards espremidos em telas intermediárias */
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(auto-fit, minmax(240px, 1fr));
 
     gap: 18px;
+
+    /* necessário para o rotateX/rotateY dos cards aparecer */
+    perspective: 1000px;
 
 }
 
@@ -979,7 +1153,7 @@ body::before {
 .skill-card p {
 
     color:
-        #71859f;
+        #8b9db5;
 
     font-size: 14px;
 
@@ -987,37 +1161,238 @@ body::before {
 
 
 /* =========================
-   PROJETOS
+   PROJETOS EM DESTAQUE
 ========================= */
 
-.projects {
+.featured-list {
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    flex-direction: column;
 
-    gap: 20px;
+    gap: 40px;
 
 }
 
 
-.project-card {
+.featured {
 
     position: relative;
 
-    padding:
-        30px;
+    display: grid;
 
-    min-height:
-        300px;
+    grid-template-columns:
+        minmax(0, 1fr) minmax(0, 1.15fr);
+
+    gap: 50px;
+
+    align-items: center;
+
+    padding: 45px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(8, 29, 59, 0.8),
-            rgba(3, 14, 31, 0.8)
+            rgba(8, 29, 59, 0.85),
+            rgba(3, 14, 31, 0.85)
         );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+
+}
+
+
+.featured:hover {
+
+    border-color:
+        rgba(22, 131, 255, 0.4);
+
+    box-shadow:
+        0 0 40px
+        rgba(22, 131, 255, 0.08);
+
+}
+
+
+/* Brilho no canto do card, do lado das imagens */
+.featured::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -160px;
+    top: -160px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(22, 131, 255, 0.14);
+
+    filter: blur(60px);
+
+    pointer-events: none;
+
+}
+
+
+.featured-reverse::before {
+
+    right: auto;
+
+    left: -160px;
+
+}
+
+
+/* No segundo projeto as imagens ficam à esquerda */
+.featured-reverse {
+
+    grid-template-columns:
+        minmax(0, 1.15fr) minmax(0, 1fr);
+
+}
+
+
+.featured-reverse .featured-info {
+
+    order: 2;
+
+}
+
+
+.featured-info,
+.featured-media {
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+
+.featured-kicker {
+
+    color: var(--blue-light);
+
+    font-family:
+        "JetBrains Mono", ui-monospace, monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+.featured h3 {
+
+    font-size: clamp(28px, 4vw, 38px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin: 10px 0 16px;
+
+}
+
+
+.featured-description {
+
+    color: var(--text-muted);
+
+    font-size: 16px;
+
+}
+
+
+.featured-highlights {
+
+    list-style: none;
+
+    display: grid;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+}
+
+
+.featured-highlights li {
+
+    position: relative;
+
+    padding-left: 24px;
+
+    color: #b6c7dc;
+
+    font-size: 15px;
+
+}
+
+
+.featured-highlights li::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+    top: 0.6em;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 2px;
+
+    background: var(--blue-light);
+
+    box-shadow:
+        0 0 10px var(--blue);
+
+    transform: rotate(45deg);
+
+}
+
+
+.featured-link {
+
+    margin-top: 30px;
+
+}
+
+
+.icon {
+
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* Janela de navegador com o print do sistema web */
+.browser {
+
+    background:
+        rgba(5, 18, 40, 0.9);
 
     border:
         1px solid var(--border);
@@ -1026,142 +1401,169 @@ body::before {
 
     overflow: hidden;
 
-    transition:
-        transform 0.3s,
-        border-color 0.3s;
+    box-shadow:
+        0 30px 80px
+        rgba(0, 0, 0, 0.45);
 
 }
 
 
-.project-card::before {
+.browser .window-bar {
 
-    content: "";
+    height: 30px;
+
+    padding: 0 12px;
+
+}
+
+
+.browser .window-bar span {
+
+    width: 8px;
+    height: 8px;
+
+}
+
+
+.browser img {
+
+    width: 100%;
+    height: auto;
+
+}
+
+
+/* Moldura de celular */
+.phone {
+
+    background: #0c1a2e;
+
+    border: 5px solid #0c1a2e;
+
+    border-radius: 26px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(72, 137, 210, 0.25);
+
+    transition:
+        transform 0.4s ease;
+
+}
+
+
+.phone img {
+
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 9 / 19.5;
+
+    object-fit: cover;
+    object-position: top;
+
+}
+
+
+/* Web: navegador com o celular sobreposto no canto */
+.media-web {
+
+    padding-bottom: 40px;
+
+}
+
+
+.media-web .browser {
+
+    width: 92%;
+
+}
+
+
+.media-web .phone {
 
     position: absolute;
 
-    width: 200px;
-    height: 200px;
+    right: 0;
+    bottom: 0;
 
-    right: -100px;
-    top: -100px;
+    width: 24%;
 
-    border-radius: 50%;
-
-    background:
-        rgba(22, 131, 255, 0.12);
-
-    filter:
-        blur(30px);
-
-    transition:
-        0.4s;
+    border-radius: 20px;
 
 }
 
 
-.project-card:hover {
+.featured:hover .media-web .phone {
 
-    transform:
-        translateY(-8px);
-
-    border-color:
-        rgba(22, 131, 255, 0.45);
+    transform: translateY(-8px);
 
 }
 
 
-.project-card:hover::before {
-
-    transform:
-        scale(1.5);
-
-}
-
-
-.project-number {
-
-    position: absolute;
-
-    right: 25px;
-    top: 25px;
-
-    color:
-        #294362;
-
-    font-family:
-        monospace;
-
-    font-size: 13px;
-
-}
-
-
-.project-top {
+/* Mobile: três celulares, o do meio na frente */
+.media-mobile {
 
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: center;
 
     align-items: center;
 
-    margin-bottom: 30px;
+}
+
+
+.media-mobile .phone {
+
+    flex-shrink: 0;
 
 }
 
 
-.folder {
+.media-mobile .phone-side {
 
-    font-size: 30px;
+    width: 33%;
 
-}
-
-
-.project-links {
-
-    display: flex;
-
-    gap: 15px;
+    opacity: 0.9;
 
 }
 
 
-.project-links a {
+/* Os laterais entram por trás do celular do meio */
+.media-mobile .phone-side:first-child {
 
-    color:
-        #7088a5;
+    margin-right: -9%;
 
-    transition:
-        0.3s;
-
-}
-
-
-.project-links a:hover {
-
-    color:
-        var(--blue-light);
+    transform: rotate(-5deg);
 
 }
 
 
-.project-card h3 {
+.media-mobile .phone-side:last-child {
 
-    font-size: 24px;
+    margin-left: -9%;
 
-    margin-bottom: 12px;
+    transform: rotate(5deg);
 
 }
 
 
-.project-card p {
+.media-mobile .phone-center {
 
-    color:
-        var(--text-muted);
+    position: relative;
 
-    font-size: 15px;
+    z-index: 2;
 
-    max-width: 450px;
+    width: 40%;
+
+}
+
+
+.featured:hover .media-mobile .phone-center {
+
+    transform: translateY(-8px);
 
 }
 
@@ -1174,7 +1576,7 @@ body::before {
 
     gap: 7px;
 
-    margin-top: 25px;
+    margin-top: 22px;
 
 }
 
@@ -1197,6 +1599,78 @@ body::before {
         #7fa6ce;
 
     font-size: 12px;
+
+}
+
+
+.all-repos {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 30px;
+
+    color: #8fa6c2;
+
+    font-size: 15px;
+
+    transition: color 0.3s;
+
+}
+
+
+.all-repos:hover {
+
+    color: var(--blue-light);
+
+}
+
+
+@media (max-width: 900px) {
+
+    .featured {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        padding: 32px;
+
+    }
+
+
+    /* Uma coluna: texto primeiro nos dois projetos */
+    .featured-reverse .featured-info {
+
+        order: 0;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .featured {
+
+        padding: 26px 20px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .phone,
+    .media-web .phone {
+
+        border-width: 3px;
+
+        border-radius: 16px;
+
+    }
 
 }
 
@@ -1255,7 +1729,7 @@ body::before {
         var(--blue-light);
 
     font-family:
-        monospace;
+        "JetBrains Mono", ui-monospace, monospace;
 
     font-size: 13px;
 
@@ -1343,7 +1817,7 @@ body::before {
         var(--blue-light);
 
     font-family:
-        monospace;
+        "JetBrains Mono", ui-monospace, monospace;
 
     font-size: 13px;
 
@@ -1395,7 +1869,7 @@ body::before {
         var(--blue-light);
 
     font-family:
-        monospace;
+        "JetBrains Mono", ui-monospace, monospace;
 
 }
 
@@ -1515,7 +1989,7 @@ footer {
         auto;
 
     color:
-        #536b88;
+        #7b93b0;
 
     font-size:
         13px;
@@ -1529,10 +2003,76 @@ footer {
 
 @media (max-width: 800px) {
 
+    .nav-toggle {
+
+        display: flex;
+
+    }
+
+
+    /* Antes o menu simplesmente sumia no celular.
+       Agora ele vira um painel que abre pelo botão. */
     .nav-links {
 
-        display:
-            none;
+        position: fixed;
+
+        top: 75px;
+        left: 0;
+        right: 0;
+
+        flex-direction: column;
+
+        gap: 0;
+
+        padding: 10px 25px 25px;
+
+        background: rgba(2, 8, 23, 0.97);
+
+        border-bottom: 1px solid var(--border);
+
+        transform: translateY(-120%);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transition: 0.3s ease;
+
+    }
+
+
+    .nav-links.open {
+
+        transform: translateY(0);
+
+        opacity: 1;
+
+        visibility: visible;
+
+    }
+
+
+    .nav-links li {
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+    .nav-links a {
+
+        display: block;
+
+        padding: 16px 0;
+
+        font-size: 16px;
+
+    }
+
+
+    .nav-links a::after {
+
+        display: none;
 
     }
 
@@ -1579,14 +2119,6 @@ footer {
 
         grid-template-columns:
             repeat(2, 1fr);
-
-    }
-
-
-    .projects {
-
-        grid-template-columns:
-            1fr;
 
     }
 
@@ -1651,6 +2183,42 @@ footer {
 
         gap:
             10px;
+
+    }
+
+}
+
+/* =========================
+   MOVIMENTO REDUZIDO
+   (respeita quem configurou o sistema para
+   menos animação — acessibilidade e enjoo visual)
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+
+    }
+
+
+    .js .reveal {
+
+        opacity: 1;
+        transform: none;
+
+    }
+
+
+    .particle {
+
+        display: none;
 
     }
 
