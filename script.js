@@ -20,7 +20,7 @@ const typingElement = document.getElementById("typing");
 const phrases = [
     "Desenvolvedor de Software",
     "Apps web e mobile",
-    "React · Node.js · React Native",
+    "React · TypeScript · Node.js",
     "Profissional de TI"
 ];
 

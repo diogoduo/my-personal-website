@@ -1060,6 +1060,121 @@ body::before {
 }
 
 
+/* Fatos rápidos abaixo do texto */
+.about-facts {
+
+    list-style: none;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+
+    margin-top: 50px;
+
+}
+
+
+.fact {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px 20px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+}
+
+
+.fact-icon {
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    padding: 9px;
+
+    border-radius: 8px;
+
+    background: rgba(22, 131, 255, 0.1);
+
+    color: var(--blue-light);
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+}
+
+
+.fact-label {
+
+    color: #7b93b0;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+.fact-value {
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .about-facts {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .about-facts {
+
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+
+    }
+
+}
+
+
 /* =========================
    SKILLS
 ========================= */
@@ -1765,6 +1880,62 @@ body::before {
 }
 
 
+.timeline-list {
+
+    list-style: none;
+
+    display: grid;
+
+    gap: 8px;
+
+    max-width: 700px;
+
+    margin-top: 16px;
+
+}
+
+
+.timeline-list li {
+
+    position: relative;
+
+    padding-left: 22px;
+
+    color: var(--text-muted);
+
+}
+
+
+.timeline-list li::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+    top: 0.65em;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--blue-light);
+
+}
+
+
+.timeline-list a {
+
+    color: var(--blue-light);
+
+    text-decoration: underline;
+
+    text-underline-offset: 3px;
+
+}
+
+
 /* =========================
    EDUCAÇÃO
 ========================= */
@@ -1836,6 +2007,103 @@ body::before {
 
     color:
         var(--text-muted);
+
+}
+
+
+/* =========================
+   CERTIFICAÇÕES
+========================= */
+
+.subsection-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 60px 0 25px;
+
+    color: #c9d6e6;
+
+    font-size: 22px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+.subsection-title::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--border);
+
+}
+
+
+.certs {
+
+    list-style: none;
+
+    display: grid;
+
+    /* Duas colunas no desktop, uma no celular */
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+
+    gap: 14px;
+
+}
+
+
+.certs li {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 18px 20px;
+
+    background: rgba(8, 24, 50, 0.5);
+
+    border: 1px solid var(--border);
+
+    border-left: 3px solid var(--blue);
+
+    border-radius: 8px;
+
+}
+
+
+.certs strong {
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+}
+
+
+.certs span {
+
+    color: var(--blue-light);
+
+    font-family:
+        "JetBrains Mono", ui-monospace, monospace;
+
+    font-size: 12px;
 
 }
 
