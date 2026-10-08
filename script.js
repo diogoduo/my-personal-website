@@ -222,7 +222,7 @@ if (sections.length && menuLinks.size) {
 
 
 /* =========================
-   EFEITO 3D (CARD DE CÓDIGO E DEMAIS CARDS)
+   EFEITO 3D NOS CARDS DE HABILIDADES
    Só em telas com mouse — no toque o transform
    inline travava o estado de hover.
 ========================= */
@@ -259,12 +259,6 @@ function applyTilt(element, intensity, lift) {
 }
 
 if (!isTouch && !reduceMotion) {
-
-    const codeWindow = document.querySelector(".code-window");
-
-    if (codeWindow) {
-        applyTilt(codeWindow, 8, 0);
-    }
 
     document
         .querySelectorAll(".skill-card")

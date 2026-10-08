@@ -954,32 +954,88 @@ body::before {
 }
 
 
-.about-card {
+/* Foto com uma moldura azul deslocada atrás */
+.about-photo {
 
-    perspective:
-        1000px;
+    position: relative;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    margin-left: auto;
 
 }
 
 
-.code-window {
+.about-photo::before {
 
-    background:
-        rgba(5, 18, 40, 0.8);
+    content: "";
 
-    border:
-        1px solid var(--border);
+    position: absolute;
 
-    border-radius: 12px;
+    inset: 0;
 
-    overflow: hidden;
+    border: 2px solid rgba(56, 167, 255, 0.5);
+
+    border-radius: 18px;
+
+    transform: translate(18px, 18px);
+
+    transition: transform 0.3s ease;
+
+}
+
+
+/* Brilho azul atrás da foto */
+.about-photo::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 10%;
+
+    z-index: -1;
+
+    border-radius: 50%;
+
+    background: rgba(22, 131, 255, 0.25);
+
+    filter: blur(60px);
+
+}
+
+
+.about-photo img {
+
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
 
     box-shadow:
-        0 30px 80px
-        rgba(0, 0, 0, 0.3);
+        0 30px 80px rgba(0, 0, 0, 0.45);
 
-    transition:
-        transform 0.2s;
+    transition: transform 0.3s ease;
+
+}
+
+
+.about-photo:hover::before {
+
+    transform: translate(10px, 10px);
+
+}
+
+
+.about-photo:hover img {
+
+    transform: translate(-4px, -4px);
 
 }
 
@@ -1014,48 +1070,6 @@ body::before {
 
     background:
         #31445e;
-
-}
-
-
-.code {
-
-    padding:
-        30px;
-
-    font-family:
-        "JetBrains Mono",
-        ui-monospace,
-        "Courier New",
-        monospace;
-
-    color:
-        #9fb2cb;
-
-    line-height: 2;
-
-}
-
-
-.indent {
-
-    padding-left: 25px;
-
-}
-
-
-.purple {
-
-    color:
-        #b58cff;
-
-}
-
-
-.green {
-
-    color:
-        #61d39c;
 
 }
 
@@ -2379,6 +2393,18 @@ footer {
 
         grid-template-columns:
             1fr;
+
+    }
+
+
+    /* No celular a foto vem antes do texto */
+    .about-photo {
+
+        order: -1;
+
+        max-width: 300px;
+
+        margin: 0 auto;
 
     }
 
