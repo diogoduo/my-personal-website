@@ -47,6 +47,13 @@
         <symbol id="icon-github" viewBox="0 0 16 16">
             <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
         </symbol>
+        <symbol id="icon-images" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="16" rx="2.5"/>
+                <circle cx="9" cy="10" r="1.8"/>
+                <path d="M21 16l-5-5-9 9"/>
+            </g>
+        </symbol>
     </svg>
 
     <!-- FUNDO ANIMADO -->
@@ -346,19 +353,31 @@
                             <span>PostgreSQL</span>
                         </div>
 
-                        <a href="https://github.com/diogoduo/sala-reservas-fmusp"
-                           class="button primary featured-link"
-                           target="_blank" rel="noopener">
-                            <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
-                            Ver repositório no GitHub
-                            <span aria-hidden="true">↗</span>
-                        </a>
+                        <div class="featured-actions">
+
+                            <a href="https://github.com/diogoduo/sala-reservas-fmusp"
+                               class="button primary"
+                               target="_blank" rel="noopener">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                                Ver repositório no GitHub
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button type="button"
+                                    class="button secondary button-compact"
+                                    data-gallery="galeria-reservas">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-images"></use></svg>
+                                Imagens
+                                <span class="button-count">12</span>
+                            </button>
+
+                        </div>
 
                     </div>
 
                     <div class="featured-media media-web">
 
-                        <div class="browser">
+                        <div class="browser" data-gallery="galeria-reservas" data-gallery-start="0">
 
                             <div class="window-bar" aria-hidden="true">
                                 <span></span>
@@ -366,15 +385,15 @@
                                 <span></span>
                             </div>
 
-                            <img src="assets/projetos/reservas-desktop.png"
+                            <img src="assets/projetos/reservas/admin-analise-escuro.png"
                                  width="1920" height="1200"
                                  loading="lazy" decoding="async"
                                  alt="Painel do SAD analisando uma solicitação: as salas aparecem da mais para a menos adequada, com a recomendada em destaque e o botão de aprovar as 8 datas da série">
 
                         </div>
 
-                        <div class="phone">
-                            <img src="assets/projetos/reservas-celular.png"
+                        <div class="phone" data-gallery="galeria-reservas" data-gallery-start="11">
+                            <img src="assets/projetos/reservas/celular-analise-escuro.png"
                                  width="780" height="1688"
                                  loading="lazy" decoding="async"
                                  alt="A mesma análise de solicitação no celular, no tema escuro">
@@ -432,34 +451,46 @@
                             <span>Jest</span>
                         </div>
 
-                        <a href="https://github.com/diogoduo/FitVibe"
-                           class="button primary featured-link"
-                           target="_blank" rel="noopener">
-                            <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
-                            Ver repositório no GitHub
-                            <span aria-hidden="true">↗</span>
-                        </a>
+                        <div class="featured-actions">
+
+                            <a href="https://github.com/diogoduo/FitVibe"
+                               class="button primary"
+                               target="_blank" rel="noopener">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                                Ver repositório no GitHub
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button type="button"
+                                    class="button secondary button-compact"
+                                    data-gallery="galeria-fitvibe">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-images"></use></svg>
+                                Imagens
+                                <span class="button-count">5</span>
+                            </button>
+
+                        </div>
 
                     </div>
 
                     <div class="featured-media media-mobile">
 
-                        <div class="phone phone-side">
-                            <img src="assets/projetos/fitvibe-treino.jpg"
+                        <div class="phone phone-side" data-gallery="galeria-fitvibe" data-gallery-start="2">
+                            <img src="assets/projetos/fitvibe/treino-ao-vivo.jpg"
                                  width="739" height="1600"
                                  loading="lazy" decoding="async"
                                  alt="Treino em andamento: séries de aquecimento e de trabalho com a carga sugerida e o RIR">
                         </div>
 
-                        <div class="phone phone-center">
-                            <img src="assets/projetos/fitvibe-hoje.jpg"
+                        <div class="phone phone-center" data-gallery="galeria-fitvibe" data-gallery-start="0">
+                            <img src="assets/projetos/fitvibe/hoje.jpg"
                                  width="591" height="1280"
                                  loading="lazy" decoding="async"
                                  alt="Tela Hoje: anéis de calorias, proteína e água, e o gasto × consumo do dia">
                         </div>
 
-                        <div class="phone phone-side">
-                            <img src="assets/projetos/fitvibe-dieta.jpg"
+                        <div class="phone phone-side" data-gallery="galeria-fitvibe" data-gallery-start="3">
+                            <img src="assets/projetos/fitvibe/dieta.jpg"
                                  width="739" height="1600"
                                  loading="lazy" decoding="async"
                                  alt="Dieta: almoço com os alimentos da tabela TACO e as calorias de cada um">
@@ -788,12 +819,38 @@
                     desenvolvimento de software e tecnologia.
                 </p>
 
-                <a
-                    href="mailto:duodiogo.business@gmail.com"
-                    class="button primary"
-                >
-                    Entrar em contato <span aria-hidden="true">→</span>
-                </a>
+                <div class="contact-actions">
+
+                    <!-- O script.js troca o mailto pelo Gmail no computador -->
+                    <a href="mailto:duodiogo.business@gmail.com?subject=Contato%20pelo%20portf%C3%B3lio"
+                       class="button primary"
+                       id="contact-button"
+                       data-gmail="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=duodiogo.business@gmail.com&amp;su=Contato%20pelo%20portf%C3%B3lio">
+                        <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+                            <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                        </svg>
+                        Entrar em contato
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                    <div class="contact-email">
+
+                        <span class="contact-email-address">duodiogo.business@gmail.com</span>
+
+                        <button type="button"
+                                class="contact-copy"
+                                data-copy="duodiogo.business@gmail.com">
+                            <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="9" y="9" width="11" height="11" rx="2"/>
+                                <path d="M5 15V6a2 2 0 0 1 2-2h9"/>
+                            </svg>
+                            <span>Copiar</span>
+                        </button>
+
+                    </div>
+
+                </div>
 
                 <div class="contact-socials">
 
@@ -809,12 +866,6 @@
                         target="_blank" rel="noopener"
                     >
                         GitHub
-                    </a>
-
-                    <a
-                        href="mailto:duodiogo.business@gmail.com"
-                    >
-                        E-mail
                     </a>
 
                 </div>
@@ -839,6 +890,91 @@
         </p>
 
     </footer>
+
+
+    <!-- IMAGENS DAS GALERIAS
+         Lidas pelo script.js quando a galeria abre; o <template> não
+         aparece na página nem baixa as imagens antes da hora.
+         Para adicionar uma imagem, copie uma linha <img> e ajuste. -->
+
+    <template id="galeria-reservas" data-title="Reserva de Salas FMUSP">
+        <img src="assets/projetos/reservas/admin-analise-escuro.png" data-thumb="assets/projetos/reservas/thumbs/admin-analise-escuro.jpg" width="1920" height="1200"
+             data-title="Análise de uma solicitação" alt="As salas aparecem da mais para a menos adequada, com a recomendada em destaque e o botão de aprovar as 8 datas da série.">
+        <img src="assets/projetos/reservas/login.png" data-thumb="assets/projetos/reservas/thumbs/login.jpg" width="1920" height="1200"
+             data-title="Login" alt="Dev Mode, que simula a Senha Única USP com as contas de teste.">
+        <img src="assets/projetos/reservas/minhas-reservas.png" data-thumb="assets/projetos/reservas/thumbs/minhas-reservas.jpg" width="1920" height="1200"
+             data-title="Minhas reservas" alt="A próxima reserva em destaque, a contagem de pendentes e aprovadas e o status de cada data.">
+        <img src="assets/projetos/reservas/escolher-atividade.png" data-thumb="assets/projetos/reservas/thumbs/escolher-atividade.jpg" width="1920" height="1200"
+             data-title="Reservar uma sala" alt="Cada tipo de atividade tem o seu formulário.">
+        <img src="assets/projetos/reservas/formulario.png" data-thumb="assets/projetos/reservas/thumbs/formulario.jpg" width="1920" height="1200"
+             data-title="Formulário" alt="Recorrência semanal, prévia das datas da série e resumo lateral com checklist ao vivo.">
+        <img src="assets/projetos/reservas/agenda.png" data-thumb="assets/projetos/reservas/thumbs/agenda.jpg" width="1920" height="1200"
+             data-title="Consultar salas" alt="Agenda do auditório com os horários reservados de cada dia.">
+        <img src="assets/projetos/reservas/salas-livres.png" data-thumb="assets/projetos/reservas/thumbs/salas-livres.jpg" width="1920" height="1590"
+             data-title="Salas livres" alt="Qual sala está livre no dia 15, das 19h às 21h? Três salas livres e o auditório ocupado.">
+        <img src="assets/projetos/reservas/admin-solicitacoes.png" data-thumb="assets/projetos/reservas/thumbs/admin-solicitacoes.jpg" width="1920" height="1200"
+             data-title="Solicitações" alt="A fila do SAD, com filtros por status e busca.">
+        <img src="assets/projetos/reservas/admin-salas.png" data-thumb="assets/projetos/reservas/thumbs/admin-salas.jpg" width="1920" height="1200"
+             data-title="Salas" alt="Cadastro de salas com capacidade, status, recursos e estatísticas.">
+        <img src="assets/projetos/reservas/admin-analise-claro.png" data-thumb="assets/projetos/reservas/thumbs/admin-analise-claro.jpg" width="1920" height="1200"
+             data-title="Tema claro" alt="A mesma análise de solicitação no tema claro.">
+        <img src="assets/projetos/reservas/celular-minhas-reservas.png" data-thumb="assets/projetos/reservas/thumbs/celular-minhas-reservas.jpg" width="780" height="1688"
+             data-title="No celular" alt="Minhas reservas no celular, com a barra de navegação inferior.">
+        <img src="assets/projetos/reservas/celular-analise-escuro.png" data-thumb="assets/projetos/reservas/thumbs/celular-analise-escuro.jpg" width="780" height="1688"
+             data-title="No celular, tema escuro" alt="Análise de solicitação no celular, no tema escuro.">
+    </template>
+
+    <template id="galeria-fitvibe" data-title="FitVibe">
+        <img src="assets/projetos/fitvibe/hoje.jpg" data-thumb="assets/projetos/fitvibe/thumbs/hoje.jpg" width="591" height="1280"
+             data-title="Hoje" alt="Anéis de calorias, proteína e água, e o gasto × consumo do dia.">
+        <img src="assets/projetos/fitvibe/treino.jpg" data-thumb="assets/projetos/fitvibe/thumbs/treino.jpg" width="739" height="1600"
+             data-title="Treino" alt="O treino em andamento e o plano da semana.">
+        <img src="assets/projetos/fitvibe/treino-ao-vivo.jpg" data-thumb="assets/projetos/fitvibe/thumbs/treino-ao-vivo.jpg" width="739" height="1600"
+             data-title="Treino em andamento" alt="Aquecimento, séries com a carga sugerida e o RIR.">
+        <img src="assets/projetos/fitvibe/dieta.jpg" data-thumb="assets/projetos/fitvibe/thumbs/dieta.jpg" width="739" height="1600"
+             data-title="Dieta" alt="Refeição com os alimentos da tabela TACO e as calorias.">
+        <img src="assets/projetos/fitvibe/biblioteca.jpg" data-thumb="assets/projetos/fitvibe/thumbs/biblioteca.jpg" width="739" height="1600"
+             data-title="Biblioteca" alt="Biblioteca de exercícios com fotos.">
+    </template>
+
+
+    <!-- GALERIA (abre por cima da página) -->
+    <dialog class="gallery" id="gallery" aria-labelledby="gallery-title">
+
+        <div class="gallery-header">
+
+            <p class="gallery-title" id="gallery-title"></p>
+
+            <span class="gallery-counter" aria-live="polite"></span>
+
+            <button type="button" class="gallery-button gallery-close" data-gallery-close aria-label="Fechar galeria">
+                <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+
+        </div>
+
+        <div class="gallery-stage">
+
+            <button type="button" class="gallery-button gallery-nav gallery-prev" data-gallery-prev aria-label="Imagem anterior">
+                <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <img class="gallery-image" alt="">
+
+            <button type="button" class="gallery-button gallery-nav gallery-next" data-gallery-next aria-label="Próxima imagem">
+                <svg class="icon icon-line" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+
+        </div>
+
+        <p class="gallery-caption">
+            <strong></strong>
+            <span></span>
+        </p>
+
+        <div class="gallery-thumbs" aria-label="Miniaturas"></div>
+
+    </dialog>
 
 
     <script src="script.js"></script>

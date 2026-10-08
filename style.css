@@ -1311,7 +1311,7 @@ body::before {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr) minmax(0, 1.15fr);
+        minmax(0, 1fr) minmax(0, 1fr);
 
     gap: 50px;
 
@@ -1387,14 +1387,6 @@ body::before {
 
 
 /* No segundo projeto as imagens ficam à esquerda */
-.featured-reverse {
-
-    grid-template-columns:
-        minmax(0, 1.15fr) minmax(0, 1fr);
-
-}
-
-
 .featured-reverse .featured-info {
 
     order: 2;
@@ -1500,9 +1492,54 @@ body::before {
 }
 
 
-.featured-link {
+.featured-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
 
     margin-top: 30px;
+
+}
+
+
+/* <button> com cara de .button (o <a> já herdava fonte e cursor) */
+button.button {
+
+    font: inherit;
+
+    cursor: pointer;
+
+}
+
+
+/* Botão menor, para caber ao lado do "Ver repositório" */
+.button-compact {
+
+    gap: 8px;
+
+    padding: 13px 16px;
+
+}
+
+
+.button-count {
+
+    min-width: 22px;
+
+    padding: 1px 7px;
+
+    border-radius: 50px;
+
+    background: rgba(22, 131, 255, 0.15);
+
+    color: var(--blue-light);
+
+    font-size: 12px;
+
+    text-align: center;
 
 }
 
@@ -1513,6 +1550,30 @@ body::before {
     height: 18px;
 
     flex-shrink: 0;
+
+}
+
+
+/* Ícones de traço (fechar, setas) */
+.icon-line {
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+}
+
+
+/* As imagens do card também abrem a galeria */
+.featured-media [data-gallery] {
+
+    cursor: zoom-in;
 
 }
 
@@ -1754,6 +1815,368 @@ body::before {
 .all-repos:hover {
 
     color: var(--blue-light);
+
+}
+
+
+/* =========================
+   GALERIA DE IMAGENS
+========================= */
+
+/* Página não rola por trás da galeria aberta */
+.gallery-open {
+
+    overflow: hidden;
+
+}
+
+
+.gallery {
+
+    width: min(1100px, calc(100% - 32px));
+
+    max-width: none;
+
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+
+    margin: auto;
+
+    padding: 0;
+
+    background: #050f22;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    color: var(--text);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.6);
+
+}
+
+
+.gallery[open] {
+
+    display: flex;
+
+    flex-direction: column;
+
+    animation: galleryIn 0.25s ease;
+
+}
+
+
+.gallery::backdrop {
+
+    background: rgba(1, 5, 15, 0.85);
+
+    backdrop-filter: blur(6px);
+
+}
+
+
+@keyframes galleryIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+
+}
+
+
+.gallery-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 12px 14px 12px 20px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.gallery-title {
+
+    font-weight: 700;
+
+}
+
+
+.gallery-counter {
+
+    color: #7b93b0;
+
+    font-family:
+        "JetBrains Mono", ui-monospace, monospace;
+
+    font-size: 13px;
+
+}
+
+
+.gallery-button {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    background: rgba(8, 24, 50, 0.85);
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+
+.gallery-button:hover {
+
+    border-color: rgba(56, 167, 255, 0.6);
+
+    background: rgba(22, 131, 255, 0.2);
+
+}
+
+
+.gallery-close {
+
+    margin-left: auto;
+
+}
+
+
+.gallery-stage {
+
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px 70px;
+
+    background: #020817;
+
+}
+
+
+.gallery-image {
+
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 100%;
+
+    max-height: calc(100vh - 290px);
+    max-height: calc(100dvh - 290px);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5);
+
+}
+
+
+.gallery-nav {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+}
+
+
+.gallery-prev {
+
+    left: 16px;
+
+}
+
+
+.gallery-next {
+
+    right: 16px;
+
+}
+
+
+.gallery-caption {
+
+    padding: 14px 20px 0;
+
+    color: var(--text-muted);
+
+    font-size: 15px;
+
+}
+
+
+.gallery-caption strong {
+
+    margin-right: 8px;
+
+    color: var(--text);
+
+}
+
+
+.gallery-thumbs {
+
+    display: flex;
+
+    gap: 8px;
+
+    padding: 14px 20px 18px;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+
+}
+
+
+.gallery-thumb {
+
+    flex: 0 0 auto;
+
+    height: 60px;
+
+    padding: 0;
+
+    background: none;
+
+    border: 2px solid transparent;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    opacity: 0.5;
+
+    transition: 0.25s;
+
+}
+
+
+.gallery-thumb img {
+
+    width: auto;
+
+    height: 100%;
+
+}
+
+
+.gallery-thumb:hover {
+
+    opacity: 0.85;
+
+}
+
+
+.gallery-thumb[aria-current="true"] {
+
+    border-color: var(--blue-light);
+
+    opacity: 1;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .gallery {
+
+        width: calc(100% - 16px);
+
+        max-height: calc(100vh - 16px);
+        max-height: calc(100dvh - 16px);
+
+    }
+
+
+    .gallery-stage {
+
+        padding: 12px;
+
+    }
+
+
+    .gallery-image {
+
+        max-height: calc(100vh - 260px);
+        max-height: calc(100dvh - 260px);
+
+    }
+
+
+    /* No celular as setas ficam por cima da imagem, mais discretas */
+    .gallery-nav {
+
+        width: 36px;
+        height: 36px;
+
+        opacity: 0.85;
+
+    }
+
+
+    .gallery-prev {
+
+        left: 8px;
+
+    }
+
+
+    .gallery-next {
+
+        right: 8px;
+
+    }
+
+
+    .gallery-thumb {
+
+        height: 48px;
+
+    }
 
 }
 
@@ -2206,6 +2629,123 @@ body::before {
 
     margin:
         auto auto 30px;
+
+}
+
+
+.contact-actions {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+/* E-mail à vista, com botão de copiar */
+.contact-email {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    max-width: 100%;
+
+    padding: 7px 7px 7px 18px;
+
+    background: rgba(8, 24, 50, 0.6);
+
+    border: 1px solid var(--border);
+
+    border-radius: 50px;
+
+}
+
+
+.contact-email-address {
+
+    color: var(--text);
+
+    font-family:
+        "JetBrains Mono", ui-monospace, monospace;
+
+    font-size: 15px;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+.contact-copy {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+
+    padding: 7px 14px;
+
+    background: rgba(22, 131, 255, 0.1);
+
+    border: 1px solid rgba(22, 131, 255, 0.3);
+
+    border-radius: 50px;
+
+    color: var(--blue-light);
+
+    font: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+
+.contact-copy:hover {
+
+    background: rgba(22, 131, 255, 0.2);
+
+    color: #fff;
+
+}
+
+
+.contact-copy .icon {
+
+    width: 15px;
+    height: 15px;
+
+}
+
+
+@media (max-width: 500px) {
+
+    .contact-email {
+
+        gap: 8px;
+
+        padding-left: 14px;
+
+    }
+
+
+    .contact-email-address {
+
+        font-size: 12.5px;
+
+    }
 
 }
 
