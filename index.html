@@ -9,7 +9,7 @@
 
     <meta name="description"
           content="Diogo Duo — desenvolvedor formado em Análise e Desenvolvimento de Sistemas.
-                   Projetos web e mobile com React, Node.js, React Native, PostgreSQL e Supabase.">
+                   Projetos web e mobile com React, Node.js, React Native, PHP, PostgreSQL e Supabase.">
 
     <meta name="theme-color" content="#020817">
 
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Diogo Duo | Desenvolvedor de Software">
     <meta property="og:description"
-          content="Portfólio de Diogo Duo: Reserva de Salas FMUSP (web) e FitVibe (app de treino e dieta).">
+          content="Portfólio de Diogo Duo: Reserva de Salas FMUSP (web), FitVibe (app de treino e dieta) e Proware (loja de PCs).">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="https://diogoduo.github.io/my-personal-website/">
     <meta property="og:image" content="https://diogoduo.github.io/my-personal-website/assets/diogo-duo.jpg">
@@ -146,6 +146,8 @@
                     <a href="#reservas">Reserva de Salas FMUSP</a>
 
                     <a href="#fitvibe">FitVibe</a>
+
+                    <a href="#proware">Proware</a>
 
                 </div>
 
@@ -500,6 +502,112 @@
 
                 </article>
 
+
+                <!-- DESTAQUE 3: PROWARE -->
+
+                <article class="featured reveal" id="proware">
+
+                    <div class="featured-info">
+
+                        <p class="featured-kicker">
+                            Web · E-commerce
+                        </p>
+
+                        <h3>Proware</h3>
+
+                        <p class="featured-description">
+                            Loja online de computadores onde o cliente monta o
+                            PC peça por peça, com checagem de compatibilidade
+                            em tempo real, ou escolhe um PC pronto. Tem um
+                            painel administrativo para acompanhar vendas,
+                            pedidos e preços.
+                        </p>
+
+                        <p class="featured-note">
+                            Começou no ensino médio como um site estático de
+                            quatro páginas, feito em equipe. A versão 2.0 foi
+                            refeita do zero com as mesmas linguagens, sem
+                            frameworks.
+                        </p>
+
+                        <ul class="featured-highlights">
+                            <li>
+                                Configurador que bloqueia peças incompatíveis,
+                                explica o motivo e calcula o consumo de energia
+                            </li>
+                            <li>
+                                Checkout com endereço pelo CEP, Pix, cartão ou
+                                boleto, e e-mail a cada etapa do pedido
+                            </li>
+                            <li>
+                                Painel com faturamento, gráfico de vendas,
+                                pedidos, clientes e catálogo de preços
+                            </li>
+                            <li>
+                                Preços recalculados no servidor, proteção CSRF
+                                e 28 testes automatizados
+                            </li>
+                        </ul>
+
+                        <div class="tags">
+                            <span>PHP</span>
+                            <span>JavaScript</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>SQLite</span>
+                            <span>Docker</span>
+                        </div>
+
+                        <div class="featured-actions">
+
+                            <a href="https://github.com/diogoduo/Proware"
+                               class="button primary"
+                               target="_blank" rel="noopener">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                                Ver repositório no GitHub
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button type="button"
+                                    class="button secondary button-compact"
+                                    data-gallery="galeria-proware">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-images"></use></svg>
+                                Imagens
+                                <span class="button-count">8</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="featured-media media-web">
+
+                        <div class="browser" data-gallery="galeria-proware" data-gallery-start="0">
+
+                            <div class="window-bar" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <img src="assets/projetos/proware/inicio.jpg"
+                                 width="1440" height="900"
+                                 loading="lazy" decoding="async"
+                                 alt="Página inicial da Proware: “O PC dos seus sonhos, peça por peça”, com os botões Começar a montar e Ver PCs prontos">
+
+                        </div>
+
+                        <div class="phone" data-gallery="galeria-proware" data-gallery-start="3">
+                            <img src="assets/projetos/proware/card-celular.jpg"
+                                 width="387" height="841"
+                                 loading="lazy" decoding="async"
+                                 alt="A página inicial da Proware no celular">
+                        </div>
+
+                    </div>
+
+                </article>
+
             </div>
 
 
@@ -585,6 +693,21 @@
 
                     <p>
                         APIs com Express e Prisma
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-icon">
+                        PHP
+                    </div>
+
+                    <h3>PHP</h3>
+
+                    <p>
+                        Sites e lojas com PDO e SQLite
                     </p>
 
                 </div>
@@ -935,6 +1058,25 @@
              data-title="Dieta" alt="Refeição com os alimentos da tabela TACO e as calorias.">
         <img src="assets/projetos/fitvibe/biblioteca.jpg" data-thumb="assets/projetos/fitvibe/thumbs/biblioteca.jpg" width="739" height="1600"
              data-title="Biblioteca" alt="Biblioteca de exercícios com fotos.">
+    </template>
+
+    <template id="galeria-proware" data-title="Proware">
+        <img src="assets/projetos/proware/inicio.jpg" data-thumb="assets/projetos/proware/thumbs/inicio.jpg" width="1440" height="900"
+             data-title="Página inicial" alt="Vitrine com carrossel e os benefícios da loja.">
+        <img src="assets/projetos/proware/monte-seu-pc.jpg" data-thumb="assets/projetos/proware/thumbs/monte-seu-pc.jpg" width="1440" height="1000"
+             data-title="Monte seu PC" alt="O configurador mostra a montagem, o consumo estimado e o total, e explica por que uma peça não serve.">
+        <img src="assets/projetos/proware/pcs-prontos.jpg" data-thumb="assets/projetos/proware/thumbs/pcs-prontos.jpg" width="1440" height="1000"
+             data-title="PCs prontos" alt="Filtro por uso, ordenação por preço e o botão Personalizar, que abre o PC no configurador.">
+        <img src="assets/projetos/proware/celular.jpg" data-thumb="assets/projetos/proware/thumbs/celular.jpg" width="1370" height="964"
+             data-title="No celular" alt="Página inicial, configurador e carrinho no celular.">
+        <img src="assets/projetos/proware/painel.jpg" data-thumb="assets/projetos/proware/thumbs/painel.jpg" width="1440" height="940"
+             data-title="Painel administrativo" alt="Faturamento, gráfico de vendas dos últimos 14 dias, pendências e produtos mais vendidos.">
+        <img src="assets/projetos/proware/painel-pedido.jpg" data-thumb="assets/projetos/proware/thumbs/painel-pedido.jpg" width="1440" height="940"
+             data-title="Pedido no painel" alt="As etapas do pedido, as peças a separar e o próximo passo, com o código de rastreio.">
+        <img src="assets/projetos/proware/painel-catalogo.jpg" data-thumb="assets/projetos/proware/thumbs/painel-catalogo.jpg" width="1440" height="940"
+             data-title="Catálogo e preços" alt="Desconto, destaque e venda de cada PC pronto; o preço acompanha a soma das peças.">
+        <img src="assets/projetos/proware/antes.jpg" data-thumb="assets/projetos/proware/thumbs/antes.jpg" width="1440" height="1000"
+             data-title="Versão original" alt="O site estático do ensino médio que deu origem ao projeto.">
     </template>
 
 

@@ -1197,9 +1197,9 @@ body::before {
 
     display: grid;
 
-    /* auto-fit evita cards espremidos em telas intermediárias */
+    /* 9 cards: 3 × 3 no desktop (2 e 1 coluna nas telas menores) */
     grid-template-columns:
-        repeat(auto-fit, minmax(240px, 1fr));
+        repeat(3, 1fr);
 
     gap: 18px;
 
@@ -1438,6 +1438,26 @@ body::before {
     color: var(--text-muted);
 
     font-size: 16px;
+
+}
+
+
+/* Nota curta sobre a origem do projeto */
+.featured-note {
+
+    margin-top: 16px;
+
+    padding: 12px 16px;
+
+    background: rgba(22, 131, 255, 0.06);
+
+    border-left: 3px solid var(--blue);
+
+    border-radius: 0 8px 8px 0;
+
+    color: #b6c7dc;
+
+    font-size: 14px;
 
 }
 
