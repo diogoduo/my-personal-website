@@ -961,7 +961,8 @@ body::before {
 
     width: 100%;
 
-    max-width: 420px;
+    /* Foto em pé (3:4) */
+    max-width: 380px;
 
     margin-left: auto;
 
